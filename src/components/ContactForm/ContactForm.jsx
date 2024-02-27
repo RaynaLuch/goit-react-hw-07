@@ -3,14 +3,14 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import css from "./ContactForm.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/operations";
 
 const userSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Too short")
     .max(50, "Too long")
     .required("This is a required field"),
-  number: Yup.string()
+  phone: Yup.string()
     .min(3, "Too short")
     .max(50, "Too long")
     .required("This is a required field"),
@@ -32,7 +32,7 @@ export const ContactForm = () => {
       onSubmit={handleSubmit}
       initialValues={{
         name: "",
-        number: "",
+        phone: "",
       }}
       validationSchema={userSchema}
     >
@@ -42,8 +42,8 @@ export const ContactForm = () => {
         <ErrorMessage className={css.error} name="name" component="span" />
 
         <label htmlFor={phoneFieldId}>Number</label>
-        <Field type="tel" name="number" id={phoneFieldId} />
-        <ErrorMessage className={css.error} name="number" component="span" />
+        <Field type="tel" name="phone" id={phoneFieldId} />
+        <ErrorMessage className={css.error} name="phone" component="span" />
 
         <button type="submit">Submit</button>
       </Form>

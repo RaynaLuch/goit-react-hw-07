@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
-  window.localStorage.setItem("saved-contacts", JSON.stringify(contacts));
+  window.localStorage.setItem("saved-contacts", JSON.stringify(contacts.items));
   const filter = useSelector(getFilter);
-  const filteredContacts = contacts.filter(
+  const filteredContacts = contacts.items.filter(
     (contact) =>
       !filter || contact.name.toLowerCase().includes(filter.toLowerCase())
   );
